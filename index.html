@@ -1,1 +1,46 @@
-<h1>welcome to _</h1>
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+    <!-- 这里放置文档的元信息 -->
+    <title>文档标题</title>
+    <meta charset="UTF-8">
+    <!-- 连接外部样式表或脚本文件等 -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js"></script>
+</head>
+
+
+
+
+<body>
+    <h2>用户注册</h2>
+    <form action="/submit" method="post">
+        <label for="username">用户名：</label>
+        <input type="text"><br><br>
+    
+        <label for="password">密码：</label>
+        <input type="password"><br><br>
+    
+        <label for="email">电子邮件地址：</label>
+        <input type="text"><br><br>
+    
+        <label for="age">年龄：</label>
+        <input type="number" width="5"><br><br>
+    
+        <label>性别：</label>
+        <input type="radio" name="gender" value="male"> 男
+        <input type="radio" name="gender" value="female"> 女<br><br>
+    
+        <label>喜欢的编程语言：</label>
+        <input type="checkbox" name="languages" value="python"> Python
+        <input type="checkbox" name="languages" value="javascript"> JavaScript
+        <input type="checkbox" name="languages" value="java"> Java
+        <input type="checkbox" name="languages" value="cpp"> C++<br><br>
+    
+        <input type="submit" value="提交">
+    </form>
+
+<body>
