@@ -151,22 +151,22 @@
         </div>
 
         <!-- ⬇️ 修改此处：文档标题 -->
-        <h1>项目技术白皮书 2026</h1>
+        <h1>《简·爱》人物关系图.pdf</h1>
         
         <!-- ⬇️ 修改此处：文档描述 -->
         <p class="description">
-            本文档详细介绍了项目的核心技术架构、部署流程及最佳实践指南。点击下载获取完整版本。
+           pass
         </p>
 
         <!-- ⬇️ 修改此处：文件名和大小 -->
         <div class="file-info">
-            <span>📄 whitepaper-2026.pdf</span>
+            <span>简·爱》人物关系图.pdf</span>
             <span>•</span>
-            <span>2.4 MB</span>
+            <span>519 KB</span>
         </div>
 
         <!-- ⬇️ 修改此处：href 指向你的 PDF 文件路径 -->
-        <a href="./whitepaper-2026.pdf" download="项目技术白皮书2026.pdf" class="download-btn">
+        <a href="./whitepaper-2026.pdf" download="《简·爱》人物关系图.pdf" class="download-btn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
@@ -178,20 +178,7 @@
             或在新标签页中在线预览 →
         </a>
 
-        <footer>© 2026 Your Project Name</footer>
+        <footer>© 2026 balabala gugugaga</footer>
     </div>
-
-    // js
-    document.addEventListener('DOMContentLoaded', async () => {
-        const pdfUrl = './whitepaper-2026.pdf'; // 与 href 保持一致
-        try {
-            const res = await fetch(pdfUrl, { method: 'HEAD' });
-            const size = parseInt(res.headers.get('content-length'));
-            if (size) {
-                const mb = (size / 1024 / 1024).toFixed(1);
-                    document.querySelector('.file-info span:last-child').textContent = `${mb} MB`;
-                }
-        } catch(e) { console.log('无法获取文件大小'); }
-    });
 </body>
 </html>
