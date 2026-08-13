@@ -180,5 +180,18 @@
 
         <footer>© 2026 Your Project Name</footer>
     </div>
+
+    // js
+    document.addEventListener('DOMContentLoaded', async () => {
+        const pdfUrl = './whitepaper-2026.pdf'; // 与 href 保持一致
+        try {
+            const res = await fetch(pdfUrl, { method: 'HEAD' });
+            const size = parseInt(res.headers.get('content-length'));
+            if (size) {
+                const mb = (size / 1024 / 1024).toFixed(1);
+                    document.querySelector('.file-info span:last-child').textContent = `${mb} MB`;
+                }
+        } catch(e) { console.log('无法获取文件大小'); }
+    });
 </body>
 </html>
