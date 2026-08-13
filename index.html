@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF 文档下载</title>
+    <title>下载：《简·爱》人物关系图</title>
     <style>
-        /* 基础重置与变量 */
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-color: #f8fafc;
+            /* 文学复古配色 */
+            --primary-color: #7c2d12; /* 砖红/深棕 */
+            --primary-hover: #9a3412;
+            --bg-color: #fafaf9;      /* 米白纸张色 */
             --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-sub: #64748b;
+            --text-main: #292524;
+            --text-sub: #78716c;
+            --accent-bg: #fef3c7;     /* 淡黄高亮 */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: "Noto Serif SC", "Source Han Serif CN", Georgia, serif; /* 衬线体更具书卷气 */
             background-color: var(--bg-color);
             color: var(--text-main);
             display: flex;
@@ -26,69 +27,76 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            line-height: 1.6;
         }
 
-        /* 卡片容器 */
         .download-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 480px;
+            border: 1px solid #e7e5e4;
+            border-radius: 4px; /* 更方正的圆角，模拟书本 */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            padding: 48px 40px;
+            max-width: 520px;
             width: 100%;
             text-align: center;
-            transition: transform 0.2s ease;
+            position: relative;
         }
 
-        .download-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        /* 顶部装饰线 */
+        .download-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60px; height: 3px;
+            background: var(--primary-color);
         }
 
-        /* PDF 图标 */
-        .pdf-icon {
-            width: 80px;
-            height: 80px;
-            background: #fee2e2;
-            border-radius: 20px;
+        .book-icon {
+            width: 72px; height: 72px;
+            background: var(--accent-bg);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
-        }
-
-        .pdf-icon svg {
-            width: 40px;
-            height: 40px;
-            color: #dc2626;
+            color: var(--primary-color);
         }
 
         h1 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            line-height: 1.4;
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .author {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+            font-style: italic;
         }
 
         .description {
             color: var(--text-sub);
             font-size: 0.95rem;
-            margin-bottom: 24px;
-            line-height: 1.6;
+            margin-bottom: 28px;
+            padding: 0 10px;
         }
 
-        .file-info {
+        .file-meta {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: #f1f5f9;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            gap: 12px;
+            background: #f5f5f4;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.8rem;
             color: var(--text-sub);
-            margin-bottom: 28px;
+            margin-bottom: 32px;
+            font-family: system-ui, sans-serif;
         }
 
-        /* 下载按钮 */
         .download-btn {
             display: inline-flex;
             align-items: center;
@@ -97,85 +105,74 @@
             background-color: var(--primary-color);
             color: white;
             text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 12px;
+            padding: 16px 36px;
+            border-radius: 6px;
             font-size: 1rem;
             font-weight: 600;
             transition: all 0.2s ease;
             width: 100%;
+            font-family: system-ui, sans-serif;
         }
 
         .download-btn:hover {
             background-color: var(--primary-hover);
             transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(124, 45, 18, 0.3);
         }
 
-        .download-btn:active {
-            transform: translateY(0);
-        }
-
-        .download-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* 预览链接 */
         .preview-link {
             display: block;
-            margin-top: 16px;
+            margin-top: 18px;
             color: var(--text-sub);
             font-size: 0.85rem;
             text-decoration: none;
-            transition: color 0.2s;
+            font-family: system-ui, sans-serif;
         }
-
-        .preview-link:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
+        .preview-link:hover { color: var(--primary-color); text-decoration: underline; }
 
         footer {
-            margin-top: 32px;
-            font-size: 0.8rem;
-            color: #94a3b8;
+            margin-top: 36px;
+            font-size: 0.75rem;
+            color: #a8a29e;
+            font-family: system-ui, sans-serif;
         }
     </style>
 </head>
 <body>
     <div class="download-card">
-        <!-- PDF 图标 -->
-        <div class="pdf-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+        <!-- 书籍图标 -->
+        <div class="book-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
             </svg>
         </div>
 
-        <!-- ⬇️ 修改此处：文档标题 -->
-        <h1>《简·爱》人物关系图.pdf</h1>
+        <h1>《简·爱》人物关系图</h1>
+        <p class="author">Charlotte Brontë · Jane Eyre</p>
         
-        <!-- ⬇️ 修改此处：文档描述 -->
         <p class="description">
-           pass
+            梳理盖茨黑德府、洛伍德学校、桑菲尔德庄园及沼泽居四大场景中的核心人物脉络，涵盖简·爱、罗切斯特、圣约翰等关键角色的情感与血缘纽带。
         </p>
 
-        <!-- ⬇️ 修改此处：文件名和大小 -->
-        <div class="file-info">
-            <span>简·爱》人物关系图.pdf</span>
+        <!-- ⬇️ 请根据实际文件修改文件名和大小 -->
+        <div class="file-meta">
+            <span>简爱人物关系图.pdf</span>
             <span>•</span>
-            <span>519 KB</span>
+            <span>1.8 MB</span>
+            <span>•</span>
+            <span>高清版</span>
         </div>
 
-        <!-- ⬇️ 修改此处：href 指向你的 PDF 文件路径 -->
-        <a href="./《简·爱》人物关系图.pdf" download="《简·爱》人物关系图.pdf" class="download-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <!-- ⬇️ href 指向你的 PDF 文件 -->
+        <a href="./简爱人物关系图.pdf" download="《简·爱》人物关系图.pdf" class="download-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
-            立即下载 PDF
+            下载 PDF
         </a>
 
-        <!-- ⬇️ 可选：在线预览链接 -->
-        <a href="./whitepaper-2026.pdf" target="_blank" class="preview-link">
-            或在新标签页中在线预览 →
+        <a href="./简爱人物关系图.pdf" target="_blank" class="preview-link">
+            在线预览关系图 →
         </a>
 
         <footer>© 2026 balabala gugugaga</footer>
